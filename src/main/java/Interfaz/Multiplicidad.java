@@ -2,29 +2,45 @@ package Interfaz;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Objects;
 
 public class Multiplicidad extends JFrame {
     private JTabbedPane pestañas;
+    private final File directorioDocumentos = new File("./documentos");
 
     public Multiplicidad() {
         super("Multiplicidad de Documentos");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         inicializarUI();
+        cargarDocumentos();
     }
 
     private void inicializarUI() {
         pestañas = new JTabbedPane();
-
-        JTextArea areaTexto1 = new JTextArea();
-        pestañas.addTab("Documento 1", new JScrollPane(areaTexto1));
-
-        JTextArea areaTexto2 = new JTextArea();
-        pestañas.addTab("Documento 2", new JScrollPane(areaTexto2));
-
-        // Aquí puedes añadir más documentos o incluso permitir al usuario abrir nuevos documentos en nuevas pestañas.
-
         add(pestañas);
+    }
+
+    private void cargarDocumentos() {
+        if (directorioDocumentos.exists() && directorioDocumentos.isDirectory()) {
+            File[] archivos = directorioDocumentos.listFiles((dir, nombre) -> nombre.endsWith(".txt"));
+            if (archivos != null) {
+                for (File archivo : archivos) {
+                    try {
+                        String contenido = new String(Files.readAllBytes(Paths.get(archivo.getAbsolutePath())));
+                        JTextArea areaTexto = new JTextArea(contenido);
+                        JScrollPane scrollPane = new JScrollPane(areaTexto);
+                        pestañas.addTab(archivo.getName(), scrollPane);
+                    } catch (IOException e) {
+                        JOptionPane.showMessageDialog(this, "Error al cargar el documento: " + archivo.getName(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -34,4 +50,5 @@ public class Multiplicidad extends JFrame {
         });
     }
 }
+
 
