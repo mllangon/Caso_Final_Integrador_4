@@ -1,2 +1,5 @@
 Esc ritor1, escritor1@gmail.com, 612345678
 Escritor2, escritor2@gmail.com, 687654321
+Escritor1, escritor1@gmail.com, 612345678
+Escritor2, escritor2@gmail.com, 687654321
+, , 
