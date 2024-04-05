@@ -36,7 +36,9 @@ public class Comparacion extends JFrame {
 
     private void accionComparar(ActionEvent e) {
         JFileChooser selectorArchivo = new JFileChooser();
+        selectorArchivo.setCurrentDirectory(new File("./documentos")); // Configura el directorio inicial
         selectorArchivo.setMultiSelectionEnabled(true);
+        selectorArchivo.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de texto (*.txt)", "txt")); // Filtra solo archivos .txt
 
         int resultado = selectorArchivo.showOpenDialog(this);
         if (resultado == JFileChooser.APPROVE_OPTION) {
@@ -58,12 +60,5 @@ public class Comparacion extends JFrame {
                 JOptionPane.showMessageDialog(this, "Por favor, selecciona dos archivos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Comparacion frame = new Comparacion();
-            frame.setVisible(true);
-        });
     }
 }
