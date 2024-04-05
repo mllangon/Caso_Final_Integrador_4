@@ -49,11 +49,4 @@ public class NavList extends JFrame {
     private void accionRefrescar(ActionEvent e) {
         cargarDocumentos();
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            NavList frame = new NavList();
-            frame.setVisible(true);
-        });
-    }
 }

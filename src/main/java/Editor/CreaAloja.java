@@ -39,11 +39,4 @@ public class CreaAloja extends JFrame {
             JOptionPane.showMessageDialog(this, "Error al guardar el texto.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            CreaAloja frame = new CreaAloja();
-            frame.setVisible(true);
-        });
-    }
 }
