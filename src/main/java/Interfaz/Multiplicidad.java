@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Objects;
 
 public class Multiplicidad extends JFrame {
     private JTabbedPane pestañas;
@@ -26,6 +25,7 @@ public class Multiplicidad extends JFrame {
     }
 
     public void cargarDocumentos() {
+        pestañas.removeAll(); // Limpia las pestañas antes de cargar los documentos
         if (directorioDocumentos.exists() && directorioDocumentos.isDirectory()) {
             File[] archivos = directorioDocumentos.listFiles((dir, nombre) -> nombre.endsWith(".txt"));
             if (archivos != null) {
@@ -43,5 +43,3 @@ public class Multiplicidad extends JFrame {
         }
     }
 }
-
-

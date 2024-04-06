@@ -29,7 +29,7 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
 
     private void initComponents() {
         JPanel headerPanel = new JPanel();
-        headerPanel.setBackground(new Color(128, 64, 0)); // Fondo marrón para el encabezado
+        headerPanel.setBackground(new Color(210, 180, 140)); // Fondo marrón claro para el encabezado
         headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         JLabel logoLabel = new JLabel(new ImageIcon("resources/logo.png")); // Asegúrate de que la ruta al logo es correcta
         headerPanel.add(logoLabel);
@@ -46,6 +46,7 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
 
         // Panel de navegación
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        navigationPanel.setBackground(new Color(154, 112, 55)); // Fondo marrón claro para el panel de navegación
         String[] buttons = {"CreaAloja", "NavList", "Palabras", "Agenda", "Multiplicidad", "Dibujo", "Validador"};
         for (String buttonLabel : buttons) {
             JButton button = new JButton(buttonLabel);
@@ -57,11 +58,13 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
         add(headerPanel, BorderLayout.NORTH);
         add(cardPanel, BorderLayout.CENTER);
         JPanel southPanel = new JPanel(new BorderLayout()); // Panel que contiene tanto la barra de estado como los botones de navegación
+        southPanel.setBackground(new Color(236, 162, 73)); // Fondo marrón claro para el panel sur
         southPanel.add(statusBar, BorderLayout.NORTH);
         southPanel.add(navigationPanel, BorderLayout.SOUTH);
         add(southPanel, BorderLayout.SOUTH);
 
-        // No es necesario añadir el listener al JFrame entero si los paneles cubren toda la ventana
+        // Cambiar el color de fondo del panel principal
+        cardPanel.setBackground(new Color(246, 193, 128)); // Marrón muy claro
     }
 
     @Override

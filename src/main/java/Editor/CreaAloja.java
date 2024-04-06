@@ -31,6 +31,8 @@ public class CreaAloja extends JFrame {
         panel.add(new JScrollPane(areaTexto), BorderLayout.CENTER);
         panel.add(botonGuardar, BorderLayout.SOUTH);
 
+        panel.setBackground(new Color(246, 193, 128));
+
         this.add(panel);
     }
 

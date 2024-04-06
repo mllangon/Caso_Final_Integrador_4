@@ -32,14 +32,15 @@ public class NavList extends JFrame {
         panel.add(new JScrollPane(listaArchivos), BorderLayout.CENTER);
         panel.add(botonRefrescar, BorderLayout.SOUTH);
 
+        panel.setBackground(new Color(246, 193, 128));
+
         this.add(panel);
     }
 
     public void cargarDocumentos() {
+        modeloLista.clear(); // Limpia el modelo de la lista antes de cargar los documentos
         File carpeta = new File(directorioDocumentos);
         File[] listaDeArchivos = carpeta.listFiles((dir, nombre) -> nombre.endsWith(".txt"));
-
-        modeloLista.clear();
         if (listaDeArchivos != null) {
             for (File archivo : listaDeArchivos) {
                 modeloLista.addElement(archivo);
