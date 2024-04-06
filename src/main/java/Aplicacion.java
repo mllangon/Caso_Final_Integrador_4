@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.util.Objects;
 
 public class Aplicacion extends JFrame implements ActionListener, MouseMotionListener {
     private CardLayout cardLayout = new CardLayout();
@@ -30,10 +31,9 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
     private void initComponents() {
         JPanel headerPanel = new JPanel();
         headerPanel.setBackground(new Color(128, 64, 0)); // Fondo marrón para el encabezado
-        headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        JLabel titleLabel = new JLabel("StartUp");
-        titleLabel.setForeground(Color.BLACK); // Letras negras
-        headerPanel.add(titleLabel);
+        headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        JLabel logoLabel = new JLabel(new ImageIcon("resources/logo.png")); // Asegúrate de que la ruta al logo es correcta
+        headerPanel.add(logoLabel);
 
         // Añadir paneles de funcionalidad
         cardPanel.add(creaAloja.getContentPane(), "CreaAloja");
@@ -66,7 +66,12 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        cardLayout.show(cardPanel, e.getActionCommand());
+        String command = e.getActionCommand();
+        cardLayout.show(cardPanel, command);
+        if (Objects.equals(command, "NavList") || Objects.equals(command, "Multiplicidad")) {
+            navList.cargarDocumentos();
+            multiplicidad.cargarDocumentos();
+        }
     }
 
     @Override

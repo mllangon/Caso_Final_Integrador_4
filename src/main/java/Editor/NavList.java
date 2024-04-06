@@ -34,7 +34,7 @@ public class NavList extends JFrame {
         this.add(panel);
     }
 
-    private void cargarDocumentos() {
+    public void cargarDocumentos() {
         File carpeta = new File(".");
         File[] listaDeArchivos = carpeta.listFiles((dir, nombre) -> nombre.endsWith(".txt"));
 

@@ -25,7 +25,7 @@ public class Multiplicidad extends JFrame {
         add(pestañas);
     }
 
-    private void cargarDocumentos() {
+    public void cargarDocumentos() {
         if (directorioDocumentos.exists() && directorioDocumentos.isDirectory()) {
             File[] archivos = directorioDocumentos.listFiles((dir, nombre) -> nombre.endsWith(".txt"));
             if (archivos != null) {
