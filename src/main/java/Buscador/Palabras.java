@@ -34,6 +34,8 @@ public class Palabras extends JFrame {
         panel.add(botonBuscar, BorderLayout.NORTH);
         panel.add(new JScrollPane(areaResultado), BorderLayout.CENTER);
 
+        panel.setBackground(new Color(246, 193, 128));
+
         this.add(panel);
     }
 

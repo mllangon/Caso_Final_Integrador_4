@@ -60,6 +60,8 @@ public class Agenda extends JFrame {
         panelPrincipal.add(panelBotones, BorderLayout.CENTER);
         panelPrincipal.add(new JScrollPane(areaContactos), BorderLayout.SOUTH);
 
+        panelPrincipal.setBackground(new Color(246, 193, 128));
+
         this.add(panelPrincipal);
     }
 

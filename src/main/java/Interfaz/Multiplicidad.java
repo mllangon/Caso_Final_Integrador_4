@@ -21,6 +21,7 @@ public class Multiplicidad extends JFrame {
 
     private void inicializarUI() {
         pestañas = new JTabbedPane();
+        pestañas.setBackground(new Color(246, 193, 128));
         add(pestañas);
     }
 

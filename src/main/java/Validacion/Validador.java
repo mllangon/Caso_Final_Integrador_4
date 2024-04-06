@@ -17,6 +17,7 @@ public class Validador {
 
     private void inicializarUI() {
         panelPrincipal = new JPanel(new BorderLayout());
+        panelPrincipal.setBackground(new Color(246, 193, 128));
         campoEmail = new JTextField(20);
         campoEmail.addKeyListener(new KeyAdapter() {
             @Override
