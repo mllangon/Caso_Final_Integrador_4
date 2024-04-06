@@ -42,13 +42,6 @@ public class Multiplicidad extends JFrame {
             }
         }
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Multiplicidad frame = new Multiplicidad();
-            frame.setVisible(true);
-        });
-    }
 }
 
 

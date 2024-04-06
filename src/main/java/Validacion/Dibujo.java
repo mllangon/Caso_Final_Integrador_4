@@ -43,11 +43,4 @@ public class Dibujo extends JFrame {
         g.setColor(Color.BLACK);
         g.fillOval(x, y, 4, 4);
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Dibujo frame = new Dibujo();
-            frame.setVisible(true);
-        });
-    }
 }

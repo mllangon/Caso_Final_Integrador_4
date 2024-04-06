@@ -118,13 +118,4 @@ public class Agenda extends JFrame {
             }
         }
     }
-
-
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Agenda frame = new Agenda();
-            frame.setVisible(true);
-        });
-    }
 }

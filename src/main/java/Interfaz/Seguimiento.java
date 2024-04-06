@@ -25,12 +25,5 @@ public class Seguimiento extends JFrame implements MouseMotionListener {
     private void actualizarTitulo(MouseEvent e) {
         setTitle("Posición del Ratón: [" + e.getX() + ", " + e.getY() + "]");
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Seguimiento frame = new Seguimiento();
-            frame.setVisible(true);
-        });
-    }
 }
 

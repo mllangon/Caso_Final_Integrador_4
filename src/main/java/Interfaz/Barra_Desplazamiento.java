@@ -20,11 +20,4 @@ public class Barra_Desplazamiento extends JFrame {
 
         add(scrollPane);
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Barra_Desplazamiento frame = new Barra_Desplazamiento();
-            frame.setVisible(true);
-        });
-    }
 }

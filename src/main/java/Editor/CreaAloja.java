@@ -53,11 +53,4 @@ public class CreaAloja extends JFrame {
             }
         }
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            CreaAloja frame = new CreaAloja();
-            frame.setVisible(true);
-        });
-    }
 }

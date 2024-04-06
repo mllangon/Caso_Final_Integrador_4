@@ -61,11 +61,4 @@ public class Palabras extends JFrame {
             }
         }
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Palabras frame = new Palabras();
-            frame.setVisible(true);
-        });
-    }
 }

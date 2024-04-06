@@ -6,18 +6,17 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.regex.Pattern;
 
-public class Validador extends JFrame {
+public class Validador {
+    private JPanel panelPrincipal;
     private JTextField campoEmail;
     private JLabel etiquetaEstado;
 
     public Validador() {
-        super("Validador de Email");
-        setSize(300, 100);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         inicializarUI();
     }
 
     private void inicializarUI() {
+        panelPrincipal = new JPanel(new BorderLayout());
         campoEmail = new JTextField(20);
         campoEmail.addKeyListener(new KeyAdapter() {
             @Override
@@ -27,11 +26,8 @@ public class Validador extends JFrame {
         });
 
         etiquetaEstado = new JLabel("Ingrese un email para validar");
-        JPanel panel = new JPanel();
-        panel.add(campoEmail);
-        panel.add(etiquetaEstado);
-
-        add(panel);
+        panelPrincipal.add(campoEmail, BorderLayout.NORTH);
+        panelPrincipal.add(etiquetaEstado, BorderLayout.CENTER);
     }
 
     private void validarEmail(String email) {
@@ -43,10 +39,7 @@ public class Validador extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Validador frame = new Validador();
-            frame.setVisible(true);
-        });
+    public JPanel getPanel() {
+        return panelPrincipal;
     }
 }
