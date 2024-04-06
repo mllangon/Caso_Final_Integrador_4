@@ -1,44 +1,39 @@
+import Validacion.Dibujo;
+import Validacion.Validador;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Aplicacion extends JFrame {
 
     public Aplicacion() {
-        super("Aplicación Integrada");
-        setSize(800, 600);
+        super("Aplicación Integrada - Empresa X");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JTabbedPane pestañas = new JTabbedPane();
+        setSize(800, 600);
 
-        // Integrar las funcionalidades aquí
-        pestañas.addTab("Editor", crearPanelEditor());
-        pestañas.addTab("Comparador y Analizador", crearPanelComparadorAnalizador());
-        pestañas.addTab("Búsqueda y Agenda", crearPanelBusquedaAgenda());
-        pestañas.addTab("Validador de Email", new Validador().getPanelValidador());
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        JTabbedPane pestañas = new JTabbedPane();
+        pestañas.addTab("Editor y Documentos", crearPanelEditor()); // Aquí asumo que crearás este panel según las instrucciones previas
+        pestañas.addTab("Validador de Email", new Validador().getPanel());
         pestañas.addTab("Herramienta de Dibujo", new Dibujo().getPanelDibujo());
 
-        // Personalización de la interfaz
+        // Configuración de colores y estilo
+        pestañas.setBackground(new Color(105, 105, 105));
+        pestañas.setForeground(Color.BLACK);
+
         getContentPane().add(pestañas);
-        setLocationRelativeTo(null); // Centrar la ventana
+        setLocationRelativeTo(null);
     }
 
+    // Asume que este método devuelve un JPanel configurado correctamente
     private JPanel crearPanelEditor() {
         JPanel panel = new JPanel();
-        panel.add(new JLabel("Funcionalidad del Editor"));
-        // Aquí integrarías la funcionalidad del editor de textos
-        return panel;
-    }
-
-    private JPanel crearPanelComparadorAnalizador() {
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Comparador y Analizador"));
-        // Aquí integrarías las funcionalidades de comparación y análisis de texto
-        return panel;
-    }
-
-    private JPanel crearPanelBusquedaAgenda() {
-        JPanel panel = new JPanel();
-        panel.add(new JLabel("Búsqueda de Palabras y Agenda"));
-        // Aquí integrarías la funcionalidad de búsqueda de palabras y gestión de la agenda
+        panel.add(new JLabel("Funcionalidades del Editor"));
         return panel;
     }
 
