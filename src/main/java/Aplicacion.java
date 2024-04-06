@@ -19,11 +19,15 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
     private Interfaz.Multiplicidad multiplicidad = new Interfaz.Multiplicidad();
     private Validacion.Dibujo dibujo = new Validacion.Dibujo();
     private Validacion.Validador validador = new Validacion.Validador();
+    private Image backgroundImage;
 
     public Aplicacion() {
         super("StartUp - Plataforma de Gestión de Contenidos Digitales");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
+
+        backgroundImage = new ImageIcon("src/resources/background.jpg").getImage();
+
         initComponents();
     }
 
@@ -31,10 +35,9 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
         JPanel headerPanel = new JPanel();
         headerPanel.setBackground(new Color(210, 180, 140)); // Fondo marrón claro para el encabezado
         headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        JLabel logoLabel = new JLabel(new ImageIcon("resources/logo.png")); // Asegúrate de que la ruta al logo es correcta
+        JLabel logoLabel = new JLabel(new ImageIcon("src/resources/startup_logo.png"));
         headerPanel.add(logoLabel);
 
-        // Añadir paneles de funcionalidad
         cardPanel.add(creaAloja.getContentPane(), "CreaAloja");
         cardPanel.add(navList.getContentPane(), "NavList");
         cardPanel.add(palabras.getContentPane(), "Palabras");
@@ -42,7 +45,7 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
         cardPanel.add(multiplicidad.getContentPane(), "Multiplicidad");
         cardPanel.add(dibujo.getPanelDibujo(), "Dibujo");
         cardPanel.add(validador.getPanel(), "Validador");
-        cardPanel.addMouseMotionListener(this); // Registrar el listener aquí
+        cardPanel.addMouseMotionListener(this);
 
         // Panel de navegación
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
