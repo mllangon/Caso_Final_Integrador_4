@@ -2,11 +2,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
-public class Aplicacion extends JFrame implements ActionListener {
+public class Aplicacion extends JFrame implements ActionListener, MouseMotionListener {
     private CardLayout cardLayout = new CardLayout();
     private JPanel cardPanel = new JPanel(cardLayout);
     private JLabel statusBar = new JLabel(" Listo");
+
+    // Crear instancias de las clases
+    private Editor.CreaAloja creaAloja = new Editor.CreaAloja();
+    private Editor.NavList navList = new Editor.NavList();
+    private Buscador.Palabras palabras = new Buscador.Palabras();
+    private Buscador.Agenda agenda = new Buscador.Agenda();
+    private Interfaz.Multiplicidad multiplicidad = new Interfaz.Multiplicidad();
+    private Interfaz.Seguimiento seguimiento = new Interfaz.Seguimiento();
+    private Validacion.Dibujo dibujo = new Validacion.Dibujo();
+    private Validacion.Validador validador = new Validacion.Validador();
 
     public Aplicacion() {
         super("StartUp - Plataforma de Gestión de Contenidos Digitales");
@@ -23,20 +35,19 @@ public class Aplicacion extends JFrame implements ActionListener {
         titleLabel.setForeground(Color.BLACK); // Letras negras
         headerPanel.add(titleLabel);
 
-        // Logo en el panel de bienvenida
-        JPanel welcomePanel = new JPanel(new BorderLayout());
-        welcomePanel.setBackground(Color.GRAY);
-        ImageIcon logoIcon = new ImageIcon(getClass().getResource("/startup_logo.png"));
-        JLabel logoLabel = new JLabel(logoIcon);
-        welcomePanel.add(logoLabel, BorderLayout.CENTER);
-        cardPanel.add(welcomePanel, "Bienvenida");
-
         // Añadir paneles de funcionalidad
-        // Ejemplo: cardPanel.add(new FuncionalidadPanel(), "Funcionalidad");
+        cardPanel.add(creaAloja.getContentPane(), "CreaAloja");
+        cardPanel.add(navList.getContentPane(), "NavList");
+        cardPanel.add(palabras.getContentPane(), "Palabras");
+        cardPanel.add(agenda.getContentPane(), "Agenda");
+        cardPanel.add(multiplicidad.getContentPane(), "Multiplicidad");
+        cardPanel.add(seguimiento.getContentPane(), "Seguimiento");
+        cardPanel.add(dibujo.getPanelDibujo(), "Dibujo");
+        cardPanel.add(validador.getPanel(), "Validador");
 
         // Panel de navegación
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        String[] buttons = {"Bienvenida", "Funcionalidad1", "Funcionalidad2"};
+        String[] buttons = {"CreaAloja", "NavList", "Palabras", "Agenda", "Multiplicidad", "Seguimiento", "Dibujo", "Validador"};
         for (String buttonLabel : buttons) {
             JButton button = new JButton(buttonLabel);
             button.addActionListener(this);
@@ -49,12 +60,27 @@ public class Aplicacion extends JFrame implements ActionListener {
         add(statusBar, BorderLayout.SOUTH);
         add(navigationPanel, BorderLayout.SOUTH);
 
-        // Seguimiento del ratón global (opcional)
+        // Seguimiento del ratón global
+        addMouseMotionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         cardLayout.show(cardPanel, e.getActionCommand());
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        actualizarTitulo(e);
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        actualizarTitulo(e);
+    }
+
+    private void actualizarTitulo(MouseEvent e) {
+        statusBar.setText("Posición del Ratón: [" + e.getX() + ", " + e.getY() + "]");
     }
 
     public static void main(String[] args) {
