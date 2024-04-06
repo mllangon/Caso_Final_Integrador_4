@@ -17,7 +17,6 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
     private Buscador.Palabras palabras = new Buscador.Palabras();
     private Buscador.Agenda agenda = new Buscador.Agenda();
     private Interfaz.Multiplicidad multiplicidad = new Interfaz.Multiplicidad();
-    private Interfaz.Seguimiento seguimiento = new Interfaz.Seguimiento();
     private Validacion.Dibujo dibujo = new Validacion.Dibujo();
     private Validacion.Validador validador = new Validacion.Validador();
 
@@ -41,13 +40,13 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
         cardPanel.add(palabras.getContentPane(), "Palabras");
         cardPanel.add(agenda.getContentPane(), "Agenda");
         cardPanel.add(multiplicidad.getContentPane(), "Multiplicidad");
-        cardPanel.add(seguimiento.getContentPane(), "Seguimiento");
         cardPanel.add(dibujo.getPanelDibujo(), "Dibujo");
         cardPanel.add(validador.getPanel(), "Validador");
+        cardPanel.addMouseMotionListener(this); // Registrar el listener aquí
 
         // Panel de navegación
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        String[] buttons = {"CreaAloja", "NavList", "Palabras", "Agenda", "Multiplicidad", "Seguimiento", "Dibujo", "Validador"};
+        String[] buttons = {"CreaAloja", "NavList", "Palabras", "Agenda", "Multiplicidad", "Dibujo", "Validador"};
         for (String buttonLabel : buttons) {
             JButton button = new JButton(buttonLabel);
             button.addActionListener(this);
@@ -57,11 +56,12 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
         // Configuración final de la ventana
         add(headerPanel, BorderLayout.NORTH);
         add(cardPanel, BorderLayout.CENTER);
-        add(statusBar, BorderLayout.SOUTH);
-        add(navigationPanel, BorderLayout.SOUTH);
+        JPanel southPanel = new JPanel(new BorderLayout()); // Panel que contiene tanto la barra de estado como los botones de navegación
+        southPanel.add(statusBar, BorderLayout.NORTH);
+        southPanel.add(navigationPanel, BorderLayout.SOUTH);
+        add(southPanel, BorderLayout.SOUTH);
 
-        // Seguimiento del ratón global
-        addMouseMotionListener(this);
+        // No es necesario añadir el listener al JFrame entero si los paneles cubren toda la ventana
     }
 
     @Override
@@ -92,6 +92,20 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
         SwingUtilities.invokeLater(() -> {
             Aplicacion app = new Aplicacion();
             app.setVisible(true);
+
+            Toolkit.getDefaultToolkit().getSystemEventQueue().push(new EventQueue() {
+                @Override
+                protected void dispatchEvent(AWTEvent event) {
+                    super.dispatchEvent(event);
+                    if (event instanceof MouseEvent) {
+                        MouseEvent me = (MouseEvent) event;
+                        if (me.getID() == MouseEvent.MOUSE_MOVED) {
+                            app.actualizarTitulo(me);
+                        }
+                    }
+                }
+            });
         });
     }
+
 }

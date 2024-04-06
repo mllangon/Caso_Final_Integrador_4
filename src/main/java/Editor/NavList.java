@@ -8,6 +8,7 @@ import java.io.File;
 public class NavList extends JFrame {
     private JList<File> listaArchivos;
     private DefaultListModel<File> modeloLista;
+    private final String directorioDocumentos = "./documentos"; // Directorio para buscar documentos
 
     public NavList() {
         super("Navegar y Listar Documentos");
@@ -35,7 +36,7 @@ public class NavList extends JFrame {
     }
 
     public void cargarDocumentos() {
-        File carpeta = new File(".");
+        File carpeta = new File(directorioDocumentos);
         File[] listaDeArchivos = carpeta.listFiles((dir, nombre) -> nombre.endsWith(".txt"));
 
         modeloLista.clear();
