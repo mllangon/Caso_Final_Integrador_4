@@ -15,9 +15,6 @@ public class Barra_Desplazamiento extends JFrame {
         JTextArea areaTexto = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(areaTexto);
 
-        // Añadir la barra de desplazamiento al panel y configurarla si es necesario
-        // Por defecto, JScrollPane añade barras de desplazamiento cuando el contenido excede el tamaño visible
-
         add(scrollPane);
     }
 }

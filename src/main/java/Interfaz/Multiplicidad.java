@@ -26,7 +26,7 @@ public class Multiplicidad extends JFrame {
     }
 
     public void cargarDocumentos() {
-        pestañas.removeAll(); // Limpia las pestañas antes de cargar los documentos
+        pestañas.removeAll();
         if (directorioDocumentos.exists() && directorioDocumentos.isDirectory()) {
             File[] archivos = directorioDocumentos.listFiles((dir, nombre) -> nombre.endsWith(".txt"));
             if (archivos != null) {

@@ -18,7 +18,6 @@ public class Dibujo {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // Configuración inicial del área de dibujo, si es necesario.
             }
         };
         panelDibujo.setPreferredSize(new Dimension(400, 400));
