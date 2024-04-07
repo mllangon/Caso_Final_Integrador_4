@@ -33,41 +33,39 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
 
     private void initComponents() {
         JPanel headerPanel = new JPanel();
-        headerPanel.setBackground(new Color(210, 180, 140)); // Fondo marrón claro para el encabezado
+        headerPanel.setBackground(new Color(210, 180, 140));
         headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         JLabel logoLabel = new JLabel(new ImageIcon("src/resources/startup_logo.png"));
         headerPanel.add(logoLabel);
 
-        cardPanel.add(creaAloja.getContentPane(), "CreaAloja");
-        cardPanel.add(navList.getContentPane(), "NavList");
-        cardPanel.add(palabras.getContentPane(), "Palabras");
+        cardPanel.add(creaAloja.getContentPane(), "Crear y Guardar");
+        cardPanel.add(navList.getContentPane(), "Lista de Archivos");
+        cardPanel.add(palabras.getContentPane(), "Buscador de Palabras");
         cardPanel.add(agenda.getContentPane(), "Agenda");
-        cardPanel.add(multiplicidad.getContentPane(), "Multiplicidad");
+        cardPanel.add(multiplicidad.getContentPane(), "Archivos");
         cardPanel.add(dibujo.getPanelDibujo(), "Dibujo");
-        cardPanel.add(validador.getPanel(), "Validador");
+        cardPanel.add(validador.getPanel(), "Comprobar existencia de contctos");
         cardPanel.addMouseMotionListener(this);
 
         // Panel de navegación
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         navigationPanel.setBackground(new Color(154, 112, 55)); // Fondo marrón claro para el panel de navegación
-        String[] buttons = {"CreaAloja", "NavList", "Palabras", "Agenda", "Multiplicidad", "Dibujo", "Validador"};
+        String[] buttons = {"Crear y Guardar", "Lista de Archivos", "Buscador de Palabras", "Agenda", "Archivos", "Dibujo", "Comprobar existencia de contctos"};
         for (String buttonLabel : buttons) {
             JButton button = new JButton(buttonLabel);
             button.addActionListener(this);
             navigationPanel.add(button);
         }
 
-        // Configuración final de la ventana
         add(headerPanel, BorderLayout.NORTH);
         add(cardPanel, BorderLayout.CENTER);
-        JPanel southPanel = new JPanel(new BorderLayout()); // Panel que contiene tanto la barra de estado como los botones de navegación
-        southPanel.setBackground(new Color(236, 162, 73)); // Fondo marrón claro para el panel sur
+        JPanel southPanel = new JPanel(new BorderLayout());
+        southPanel.setBackground(new Color(236, 162, 73));
         southPanel.add(statusBar, BorderLayout.NORTH);
         southPanel.add(navigationPanel, BorderLayout.SOUTH);
         add(southPanel, BorderLayout.SOUTH);
 
-        // Cambiar el color de fondo del panel principal
-        cardPanel.setBackground(new Color(246, 193, 128)); // Marrón muy claro
+        cardPanel.setBackground(new Color(246, 193, 128));
     }
 
     @Override
