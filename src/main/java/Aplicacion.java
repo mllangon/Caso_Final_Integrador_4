@@ -11,7 +11,6 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
     private JPanel cardPanel = new JPanel(cardLayout);
     private JLabel statusBar = new JLabel(" Listo");
 
-    // Crear instancias de las clases
     private Editor.CreaAloja creaAloja = new Editor.CreaAloja();
     private Editor.NavList navList = new Editor.NavList();
     private Buscador.Palabras palabras = new Buscador.Palabras();
@@ -19,14 +18,14 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
     private Interfaz.Multiplicidad multiplicidad = new Interfaz.Multiplicidad();
     private Validacion.Dibujo dibujo = new Validacion.Dibujo();
     private Validacion.Validador validador = new Validacion.Validador();
-    private Image backgroundImage;
 
     public Aplicacion() {
         super("StartUp - Plataforma de Gestión de Contenidos Digitales");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
 
-        backgroundImage = new ImageIcon("src/resources/background.jpg").getImage();
+        Image logo = new ImageIcon(getClass().getResource("/startup_logo.png")).getImage();
+        setIconImage(logo);
 
         initComponents();
     }

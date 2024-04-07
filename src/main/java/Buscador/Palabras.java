@@ -9,10 +9,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import Comparador_Contador.Analisis;
 
 public class Palabras extends JFrame {
     private JButton botonBuscar;
     private JTextArea areaResultado;
+    private Analisis analisis = new Analisis();
     private final String directorioDocumentos = "./documentos";
 
     public Palabras() {
@@ -50,13 +52,20 @@ public class Palabras extends JFrame {
             if (palabraABuscar != null && !palabraABuscar.trim().isEmpty()) {
                 try {
                     String contenido = new String(Files.readAllBytes(Paths.get(archivoSeleccionado.getAbsolutePath())));
+
+                    // Contar todas las palabras en el archivo
+                    int totalPalabras = analisis.accionAnalizar(archivoSeleccionado);
+
+                    // Buscar la palabra especificada
                     Pattern pattern = Pattern.compile("\\b" + Pattern.quote(palabraABuscar.trim()) + "\\b", Pattern.CASE_INSENSITIVE);
                     Matcher matcher = pattern.matcher(contenido);
                     int contador = 0;
                     while (matcher.find()) {
                         contador++;
                     }
-                    areaResultado.setText("La palabra '" + palabraABuscar + "' aparece " + contador + " veces en el documento.");
+
+                    areaResultado.setText("La palabra '" + palabraABuscar + "' aparece " + contador + " veces en el documento.\n" +
+                            "El documento contiene un total de " + totalPalabras + " palabras.");
                 } catch (IOException excepcionIO) {
                     JOptionPane.showMessageDialog(this, "Error al leer el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
                 }

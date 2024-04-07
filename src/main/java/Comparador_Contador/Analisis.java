@@ -22,7 +22,7 @@ public class Analisis extends JFrame {
 
     private void inicializarUI() {
         botonAnalizar = new JButton("Analizar Documento");
-        botonAnalizar.addActionListener(this::accionAnalizar);
+        botonAnalizar.addActionListener(this::accionBotonAnalizar);
 
         areaResultado = new JTextArea();
         areaResultado.setEditable(false);
@@ -37,22 +37,25 @@ public class Analisis extends JFrame {
         this.add(panel);
     }
 
-    private void accionAnalizar(ActionEvent e) {
+    private void accionBotonAnalizar(ActionEvent e) {
         JFileChooser selectorArchivo = new JFileChooser();
-        selectorArchivo.setCurrentDirectory(new File("./documentos"));
-        selectorArchivo.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de texto (*.txt)", "txt")); // Filtra solo archivos .txt
-
         int resultado = selectorArchivo.showOpenDialog(this);
         if (resultado == JFileChooser.APPROVE_OPTION) {
             File archivoSeleccionado = selectorArchivo.getSelectedFile();
-            try {
-                String contenido = new String(Files.readAllBytes(Paths.get(archivoSeleccionado.getAbsolutePath())));
-                StringTokenizer tokens = new StringTokenizer(contenido);
-                areaResultado.setText("Número de palabras: " + tokens.countTokens());
-            } catch (IOException excepcionIO) {
-                JOptionPane.showMessageDialog(this, "Error al leer el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            accionAnalizar(archivoSeleccionado);
+        }
+    }
+
+    public int accionAnalizar(File archivoSeleccionado) {
+        try {
+            String contenido = new String(Files.readAllBytes(Paths.get(archivoSeleccionado.getAbsolutePath())));
+            StringTokenizer tokens = new StringTokenizer(contenido);
+            int totalPalabras = tokens.countTokens();
+            areaResultado.setText("Número de palabras: " + totalPalabras);
+            return totalPalabras;
+        } catch (IOException excepcionIO) {
+            JOptionPane.showMessageDialog(this, "Error al leer el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+            return 0;
         }
     }
 }
-
