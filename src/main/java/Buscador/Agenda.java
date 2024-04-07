@@ -32,13 +32,13 @@ public class Agenda extends JFrame {
         campoTelefono = new JTextField(20);
         botonGuardar = new JButton("Guardar Contacto");
         botonMostrar = new JButton("Mostrar Contactos");
-        botonEliminar = new JButton("Eliminar Contacto"); // Inicializar el botón de eliminar
+        botonEliminar = new JButton("Eliminar Contacto");
         areaContactos = new JTextArea(10, 30);
         areaContactos.setEditable(false);
 
         botonGuardar.addActionListener(this::accionGuardarContacto);
         botonMostrar.addActionListener(this::accionMostrarContactos);
-        botonEliminar.addActionListener(this::accionEliminarContacto); // Configurar listener para el botón de eliminar
+        botonEliminar.addActionListener(this::accionEliminarContacto);
 
         JPanel panelCampos = new JPanel();
         panelCampos.setLayout(new GridLayout(3, 2));
@@ -49,10 +49,10 @@ public class Agenda extends JFrame {
         panelCampos.add(new JLabel("Teléfono:"));
         panelCampos.add(campoTelefono);
 
-        JPanel panelBotones = new JPanel(); // Asegúrate de que esta línea esté antes de añadir botones a él.
+        JPanel panelBotones = new JPanel();
         panelBotones.add(botonGuardar);
         panelBotones.add(botonMostrar);
-        panelBotones.add(botonEliminar); // Añadir el botón de eliminar al panel de botones
+        panelBotones.add(botonEliminar);
 
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BorderLayout());
@@ -82,10 +82,9 @@ public class Agenda extends JFrame {
     private void accionMostrarContactos(ActionEvent e) {
         try {
             List<String> lineas = Files.readAllLines(Paths.get(archivoContactos.getAbsolutePath()));
-            // Asegurarse de que el área de texto esté limpia antes de agregar el contenido.
-            areaContactos.setText(""); // Limpia el área de texto antes de agregar los contactos.
+            areaContactos.setText("");
             for(String linea : lineas) {
-                areaContactos.append(linea + "\n"); // Añade cada contacto al área de texto.
+                areaContactos.append(linea + "\n");
             }
         } catch (IOException excepcionIO) {
             JOptionPane.showMessageDialog(this, "Error al leer los contactos.", "Error", JOptionPane.ERROR_MESSAGE);

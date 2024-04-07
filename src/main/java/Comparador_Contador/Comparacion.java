@@ -38,7 +38,7 @@ public class Comparacion extends JFrame {
 
     private void accionComparar(ActionEvent e) {
         JFileChooser selectorArchivo = new JFileChooser();
-        selectorArchivo.setCurrentDirectory(new File("./documentos")); // Configura el directorio inicial
+        selectorArchivo.setCurrentDirectory(new File("./documentos"));
         selectorArchivo.setMultiSelectionEnabled(true);
         selectorArchivo.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de texto (*.txt)", "txt")); // Filtra solo archivos .txt
 

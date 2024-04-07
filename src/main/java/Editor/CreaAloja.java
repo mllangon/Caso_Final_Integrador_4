@@ -10,7 +10,7 @@ import java.io.IOException;
 public class CreaAloja extends JFrame {
     private JTextArea areaTexto;
     private JButton botonGuardar;
-    private final String directorioDocumentos = "./documentos"; // Directorio para guardar documentos
+    private final String directorioDocumentos = "./documentos";
 
     public CreaAloja() {
         super("Crear y Almacenar Textos");

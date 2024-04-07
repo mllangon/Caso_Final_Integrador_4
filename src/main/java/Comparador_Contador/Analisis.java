@@ -39,7 +39,7 @@ public class Analisis extends JFrame {
 
     private void accionAnalizar(ActionEvent e) {
         JFileChooser selectorArchivo = new JFileChooser();
-        selectorArchivo.setCurrentDirectory(new File("./documentos")); // Configura el directorio inicial
+        selectorArchivo.setCurrentDirectory(new File("./documentos"));
         selectorArchivo.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de texto (*.txt)", "txt")); // Filtra solo archivos .txt
 
         int resultado = selectorArchivo.showOpenDialog(this);
