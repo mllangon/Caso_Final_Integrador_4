@@ -18,14 +18,12 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
     private Interfaz.Multiplicidad multiplicidad = new Interfaz.Multiplicidad();
     private Validacion.Dibujo dibujo = new Validacion.Dibujo();
     private Validacion.Validador validador = new Validacion.Validador();
+    private Comparador_Contador.Comparacion comparacion = new Comparador_Contador.Comparacion();
 
     public Aplicacion() {
         super("StartUp - Plataforma de Gestión de Contenidos Digitales");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
-
-        Image logo = new ImageIcon(getClass().getResource("/startup_logo.png")).getImage();
-        setIconImage(logo);
 
         initComponents();
     }
@@ -34,8 +32,6 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
         JPanel headerPanel = new JPanel();
         headerPanel.setBackground(new Color(210, 180, 140));
         headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        JLabel logoLabel = new JLabel(new ImageIcon("src/resources/startup_logo.png"));
-        headerPanel.add(logoLabel);
 
         cardPanel.add(creaAloja.getContentPane(), "Crear y Guardar");
         cardPanel.add(navList.getContentPane(), "Lista de Archivos");
@@ -43,13 +39,14 @@ public class Aplicacion extends JFrame implements ActionListener, MouseMotionLis
         cardPanel.add(agenda.getContentPane(), "Agenda");
         cardPanel.add(multiplicidad.getContentPane(), "Archivos");
         cardPanel.add(dibujo.getPanelDibujo(), "Dibujo");
-        cardPanel.add(validador.getPanel(), "Comprobar existencia de contctos");
+        cardPanel.add(validador.getPanel(), "Validador");
+        cardPanel.add(comparacion.getContentPane(), "Comparación");
         cardPanel.addMouseMotionListener(this);
 
         // Panel de navegación
         JPanel navigationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        navigationPanel.setBackground(new Color(154, 112, 55)); // Fondo marrón claro para el panel de navegación
-        String[] buttons = {"Crear y Guardar", "Lista de Archivos", "Buscador de Palabras", "Agenda", "Archivos", "Dibujo", "Comprobar existencia de contctos"};
+        navigationPanel.setBackground(new Color(154, 112, 55));
+        String[] buttons = {"Crear y Guardar", "Lista de Archivos", "Buscador de Palabras", "Agenda", "Archivos", "Dibujo", "Validador", "Comparación"};
         for (String buttonLabel : buttons) {
             JButton button = new JButton(buttonLabel);
             button.addActionListener(this);
